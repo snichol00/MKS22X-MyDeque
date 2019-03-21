@@ -34,10 +34,12 @@ public class MyDeque<E>{
     else if (start == 0){
       start = data.length - 1;
       data[start] = element;
+      size++;
     }
     else{
       start--;
       data[start] = element;
+      size++;
     }
   }
 
@@ -49,15 +51,21 @@ public class MyDeque<E>{
     else if (end == data.length - 1){
       end = 0;
       data[end] = element;
+      size++;
     }
     else{
       end++;
       data[end] = element;
+      size++;
     }
   }
 
   public E removeFirst(){
+    if (size == 0){
+      throw new Exception();
+    }
     data[start] = null;
+    size--;
     if (start == data.length - 1){
       start = 0;
     }
@@ -82,5 +90,9 @@ public class MyDeque<E>{
 
   public E getLast(E element){
     return data[end];
+  }
+
+  private void resize(){
+
   }
 }
