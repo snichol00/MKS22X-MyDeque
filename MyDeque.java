@@ -21,13 +21,16 @@ public class MyDeque<E>{
   public String toString(){
     String output = "[";
     for (int y = 0; y < data.length; y++){
-      output += data + ", ";
+      output += data + " ";
     }
     return output + "]";
   }
 
   public void addFirst(E element){
-    if (end == start - 1){
+    if (element == null){
+      throw new NullPointerExcpetion();
+    }
+    else if (end == start - 1){
       resize();
       addFirst(element);
     }
@@ -44,7 +47,10 @@ public class MyDeque<E>{
   }
 
   public void addLast(E element){
-    if (start == end - 1){
+    if (element == null){
+      throw new NullPointerExcpetion();
+    }
+    else if (start == end - 1){
       resize();
       addLast(element);
     }
@@ -62,7 +68,7 @@ public class MyDeque<E>{
 
   public E removeFirst(){
     if (size == 0){
-      throw new Exception();
+      throw new NoSuchElementException();
     }
     data[start] = null;
     size--;
@@ -75,6 +81,9 @@ public class MyDeque<E>{
   }
 
   public E removeLast(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
     data[end] = null;
     if (end == 0){
       end = data.length - 1;
@@ -93,6 +102,10 @@ public class MyDeque<E>{
   }
 
   private void resize(){
-
+    int[] temp = new int[2 * size() + 1];
+    for (int i = 0; i < data.length){
+      temp[i] = data[i];
+    }
+    data = temp;
   }
 }
