@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -19,16 +21,16 @@ public class MyDeque<E>{
   }
 
   public String toString(){
-    String output = "[";
+    String output = "{}";
     for (int y = 0; y < data.length; y++){
       output += data + " ";
     }
-    return output + "]";
+    return output + "}";
   }
 
   public void addFirst(E element){
     if (element == null){
-      throw new NullPointerExcpetion();
+      throw new NullPointerException();
     }
     else if (end == start - 1){
       resize();
@@ -48,7 +50,7 @@ public class MyDeque<E>{
 
   public void addLast(E element){
     if (element == null){
-      throw new NullPointerExcpetion();
+      throw new NullPointerException();
     }
     else if (start == end - 1){
       resize();
@@ -70,6 +72,7 @@ public class MyDeque<E>{
     if (size == 0){
       throw new NoSuchElementException();
     }
+    E output = data[start];
     data[start] = null;
     size--;
     if (start == data.length - 1){
@@ -78,12 +81,14 @@ public class MyDeque<E>{
     else{
       start++;
     }
+    return output;
   }
 
   public E removeLast(){
     if (size == 0){
       throw new NoSuchElementException();
     }
+    E output = data[end];
     data[end] = null;
     if (end == 0){
       end = data.length - 1;
@@ -91,6 +96,7 @@ public class MyDeque<E>{
     else{
       end--;
     }
+    return output;
   }
 
   public E getFirst(E element){
@@ -102,8 +108,9 @@ public class MyDeque<E>{
   }
 
   private void resize(){
-    int[] temp = new int[2 * size() + 1];
-    for (int i = 0; i < data.length){
+    @SuppressWarnings("unchecked")
+    E[] temp = (E[])new Object[2 * size + 1];
+    for (int i = 0; i < data.length; i++){
       temp[i] = data[i];
     }
     data = temp;
