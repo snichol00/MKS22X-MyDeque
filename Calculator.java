@@ -12,28 +12,32 @@ public class Calculator{
           Double first = deque.removeLast();
           deque.addLast(first + second);
         }
-        if (input[i].equals("-")){
+        else if (input[i].equals("-")){
           Double second = deque.removeLast();
           Double first = deque.removeLast();
           deque.addLast(first - second);
         }
-        if (input[i].equals("*")){
+        else if (input[i].equals("*")){
           Double second = deque.removeLast();
           Double first = deque.removeLast();
           deque.addLast(first * second);
         }
-        if (input[i].equals("/")){
+        else if (input[i].equals("/")){
           Double second = deque.removeLast();
           Double first = deque.removeLast();
           deque.addLast(first / second);
         }
-        if (input[i].equals("%")){
+        else if (input[i].equals("%")){
           Double second = deque.removeLast();
           Double first = deque.removeLast();
           deque.addLast(first % second);
         }
+        else{
+          Double last = Double.parseDouble(input[i]);
+          deque.addLast(last);
+        }
       }
-      return deque.getFirst();
+      return deque.getLast();
     }
 
 }
