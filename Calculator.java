@@ -8,19 +8,32 @@ public class Calculator{
       MyDeque<int> deque = new MyDeque<int>();
       for (int i = 0; i < input.length; i++){
         if (input[i] == "+"){
-
+          int second = deque.removeLast();
+          int first = deque.removeLast();
+          deque.addLast(first + second);
         }
         if (input[i] == "-"){
-
+          int second = deque.removeLast();
+          int first = deque.removeLast();
+          deque.addLast(first - second);
         }
         if (input[i] == "*"){
-
+          int second = deque.removeLast();
+          int first = deque.removeLast();
+          deque.addLast(first * second);
         }
         if (input[i] == "/"){
-
+          int second = deque.removeLast();
+          int first = deque.removeLast();
+          deque.addLast(first / second);
         }
         if (input[i] == "%"){
-          
+          int second = deque.removeLast();
+          int first = deque.removeLast();
+          deque.addLast(first % second);
         }
+      }
+      return deque.getFirst();
     }
+
 }
