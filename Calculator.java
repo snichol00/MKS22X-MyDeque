@@ -5,31 +5,31 @@ public class Calculator{
     public static double eval(String s){
       //makes an array of the terminal input
       String [] input = s.split(" ");
-      MyDeque<int> deque = new MyDeque<int>();
+      MyDeque<Double> deque = new MyDeque<Double>();
       for (int i = 0; i < input.length; i++){
-        if (input[i] == "+"){
-          int second = deque.removeLast();
-          int first = deque.removeLast();
+        if (input[i].equals("+")){
+          Double second = deque.removeLast();
+          Double first = deque.removeLast();
           deque.addLast(first + second);
         }
-        if (input[i] == "-"){
-          int second = deque.removeLast();
-          int first = deque.removeLast();
+        if (input[i].equals("-")){
+          Double second = deque.removeLast();
+          Double first = deque.removeLast();
           deque.addLast(first - second);
         }
-        if (input[i] == "*"){
-          int second = deque.removeLast();
-          int first = deque.removeLast();
+        if (input[i].equals("*")){
+          Double second = deque.removeLast();
+          Double first = deque.removeLast();
           deque.addLast(first * second);
         }
-        if (input[i] == "/"){
-          int second = deque.removeLast();
-          int first = deque.removeLast();
+        if (input[i].equals("/")){
+          Double second = deque.removeLast();
+          Double first = deque.removeLast();
           deque.addLast(first / second);
         }
-        if (input[i] == "%"){
-          int second = deque.removeLast();
-          int first = deque.removeLast();
+        if (input[i].equals("%")){
+          Double second = deque.removeLast();
+          Double first = deque.removeLast();
           deque.addLast(first % second);
         }
       }
