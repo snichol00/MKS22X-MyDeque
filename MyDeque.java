@@ -47,7 +47,7 @@ public class MyDeque<E>{
     if (element == null){
       throw new NullPointerException();
     }
-    if(size == data.length-1){
+    if(size == data.length - 1){
       resize();
     }
     if (start == 0 && end == 0){
@@ -55,12 +55,12 @@ public class MyDeque<E>{
       end++;
     }
     else if(start == 0){
-      data[data.length - 1] = element;
       start = data.length - 1;
+      data[start] = element;
     }
     else{
-      data[start] = element;
       start--;
+      data[start] = element;
     }
     size++;
   }
@@ -69,13 +69,10 @@ public class MyDeque<E>{
     if (element == null){
       throw new NullPointerException("Can't add null");
     }
-    if (start == data.length - 1){
+    if (size == data.length - 1){
       resize();
     }
-    if (size == 0) {
-      data[end] = element;
-      end++;
-    } else if (end == data.length - 1){
+    if (end == data.length - 1){
       data[data.length - 1] = element;
       end = 0;
     }
@@ -132,14 +129,14 @@ public class MyDeque<E>{
       throw new NoSuchElementException();
     }
     if(end == 0){
-      return data[data.length-1];
+      return data[data.length - 1];
     }
-    return data[end];
+    return data[end - 1];
   }
 
   @SuppressWarnings("unchecked")
   private void resize(){
-    E[] temp = (E[])new Object[2 * data.length + 1];
+    E[] temp = (E[])new Object[(2 * data.length) + 1];
     if (start < end){
       for (int i = 0; i + start < end; i++){
         temp[i] = data[i + start];
